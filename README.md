@@ -19,16 +19,30 @@ This repository currently includes:
 - `python-dotenv`
 - Valid Link2Valves CA certificate and client certificate/key pair
 
-Install dependencies:
+## Set Up a Virtual Environment (venv)
+
+Use a virtual environment to keep this project's packages separate from your global Python install.
+
+In Command Prompt, from the repository root:
+
+```bat
+py -3 -m venv .venv
+.venv\Scripts\activate
+python -m pip install --upgrade pip
+```
+
+Your prompt should show `(.venv)` when the environment is active.
+
+With the virtual environment active, install dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 If you prefer manual installation:
 
 ```bash
-pip install requests python-dotenv
+python -m pip install requests python-dotenv
 ```
 
 ## Environment Setup
