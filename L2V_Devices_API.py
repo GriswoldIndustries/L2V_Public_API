@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 # Load environment variables from the .env file
 load_dotenv()
-cert_dir = os.getenv('DATA_CERT_DIR')
-ca_cert_filename = os.getenv('DATA_CA_CERT')
-client_cert_filename = os.getenv('DATA_CLIENT_CERT')
-key_file_filename = os.getenv('DATA_KEY_FILE')
+cert_dir = os.getenv('DEVICES_CERT_DIR')
+ca_cert_filename = os.getenv('DEVICES_CA_CERT')
+client_cert_filename = os.getenv('DEVICES_CLIENT_CERT')
+key_file_filename = os.getenv('DEVICES_KEY_FILE')
 
 ca_cert = os.path.join(cert_dir, ca_cert_filename)
 client_cert = os.path.join(cert_dir, client_cert_filename)
@@ -20,7 +20,7 @@ url = 'https://link2valves.com/public/api/devices'
 output_folder = 'responses'
 os.makedirs(output_folder, exist_ok=True)
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-output_file = os.path.join(output_folder, f'data_response_data_{timestamp}.json')
+output_file = os.path.join(output_folder, f'devices_response_data_{timestamp}.json')
 
 # Send the GET request with client certificate authentication
 response = requests.get(url, cert=(client_cert, key_file), verify=ca_cert)
