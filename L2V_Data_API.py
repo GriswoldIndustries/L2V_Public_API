@@ -1,14 +1,16 @@
 import json, os, requests
+from dotenv import load_dotenv
 
-# Path to the certificate directory
-# Adjust this path if your certificates are stored elsewhere
-cert_dir = os.path.join(os.path.expanduser('~'), 'GitHub', 'L2V_Public_API', 'City of Data - Series 35')
+# Load environment variables from the .env file
+load_dotenv()
+cert_dir = os.getenv('DATA_CERT_DIR')
+ca_cert_filename = os.getenv('DATA_CA_CERT')
+client_cert_filename = os.getenv('DATA_CLIENT_CERT')
+key_file_filename = os.getenv('DATA_KEY_FILE')
 
-# Define the paths to the certificate files
-# Adjust the file names if they are different
-ca_cert = os.path.join(cert_dir, 'ClaValCABundle.crt')
-client_cert = os.path.join(cert_dir, 'kdarmstadt_device.City_of_Data_-_Series_35.link2valves.com.crt')
-key_file = os.path.join(cert_dir, 'kdarmstadt_device.City_of_Data_-_Series_35.link2valves.com.key')
+ca_cert = os.path.join(cert_dir, ca_cert_filename)
+client_cert = os.path.join(cert_dir, client_cert_filename)
+key_file = os.path.join(cert_dir, key_file_filename)
 
 # URL to send the GET request to
 url = 'https://link2valves.com/public/api/devices'
