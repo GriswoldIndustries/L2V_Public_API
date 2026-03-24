@@ -1,4 +1,5 @@
 import json, os, requests
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables from the .env file
@@ -16,8 +17,10 @@ key_file = os.path.join(cert_dir, key_file_filename)
 url = 'https://link2valves.com/public/api/assets'
 
 # Output file path (folder and filename where the response will be saved)
-# Edit this variable to change the destination
-output_file = 'response_assets.json'
+output_folder = 'responses'
+os.makedirs(output_folder, exist_ok=True)
+timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+output_file = os.path.join(output_folder, f'assets_response_data_{timestamp}.json')
 
 # Send the GET request with client certificate authentication
 response = requests.get(url, cert=(client_cert, key_file), verify=ca_cert)
